@@ -1,0 +1,41 @@
+{
+  "name": "youtube-clone",
+  "version": "1.0.0",
+  "description": "Youtube clone application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@google-cloud/storage": "^5.8.5",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
+    "sequelize": "^5.22.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "nodemon": "^2.0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjukic1/MOP-praksa-beckend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sjukic1/MOP-praksa-beckend/issues"
+  },
+  "homepage": "https://github.com/sjukic1/MOP-praksa-beckend#readme"
+}
