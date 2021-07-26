@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "25b058a3-3f55-4a39-ad34-ac8b3e0a1ffb",
+		"name": "YouTube-clone beckend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"sjukic1\",\n    \"password\" : \"sjukicpass123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/auth/login",
+					"host": [
+						"{{YOUTUBE_CLONE_BACKEND_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"sjukic1\",\n    \"name\" : \"Sadik\",\n    \"surname\" : \"Jukic\",\n    \"password\" : \"sjukicpass123\",\n    \"description\" : \"Please input some description...\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/auth/signup",
+					"host": [
+						"{{YOUTUBE_CLONE_BACKEND_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

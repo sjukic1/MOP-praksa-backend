@@ -33,7 +33,7 @@ export const login = async (req, res) => {
     }
   } catch (err) {
     if (err) {
-      res.status(400).json({ error: err });
+      res.status(500).json({ error: err });
     }
   }
 };
@@ -58,7 +58,7 @@ export const signUp = async (req, res) => {
     }
   } catch (err) {
     if (err) {
-      res.status(400).json({ error: err });
+      res.status(500).json({ error: err });
     }
   }
 };
