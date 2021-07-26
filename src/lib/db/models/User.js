@@ -24,10 +24,6 @@ export default (sequelize, DataTypes) =>
       type: Sequelize.STRING,
       required: true,
     },
-    picture: {
-      type: Sequelize.STRING,
-      required: true,
-    },
     description: Sequelize.STRING,
     dateOfRegistration: {
       type: Sequelize.DATE,
