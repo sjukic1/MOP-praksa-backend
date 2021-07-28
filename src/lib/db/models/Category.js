@@ -9,6 +9,7 @@ export default (sequelize, DataTypes) =>
     },
     title: {
       type: Sequelize.STRING,
+      unique: true,
       required: true,
     },
     description: Sequelize.STRING,
