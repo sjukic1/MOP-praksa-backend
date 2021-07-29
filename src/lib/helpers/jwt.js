@@ -8,7 +8,7 @@ const createTokens = (user) => {
 };
 
 const validateToken = (req, res, next) => {
-  const accessToken = req.cookie['access-token'];
+  const accessToken = req.cookies['access-token'];
 
   if (!accessToken) {
     return res.status(400).josn({ error: 'User not authenticated!' });

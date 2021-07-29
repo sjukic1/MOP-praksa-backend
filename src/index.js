@@ -5,7 +5,10 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import authRoutes from './routes/auth';
+import categoriesRouter from './routes/categories';
+
 import db from './lib/db/';
+import generateDatabaseData from './lib/helpers/databaseData';
 
 import { PORT, INITIAL_DB_SETUP } from './config/constants';
 
@@ -32,11 +35,20 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/categories', categoriesRouter);
 
 (async () => {
   try {
-    await db.sequelize.sync({ force: INITIAL_DB_SETUP });
-    console.log('Sequlize initial setup done!');
+    const setupDatabase = await db.sequelize.sync({ force: INITIAL_DB_SETUP });
+
+    if (!setupDatabase) {
+      console.log('There seems to be problem with setting up the database!');
+    } else {
+      if (INITIAL_DB_SETUP) {
+        await generateDatabaseData();
+        console.log('Sequlize initial setup done!');
+      }
+    }
   } catch (err) {
     console.log(err);
   }
