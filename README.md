@@ -42,4 +42,12 @@ DB_DIALECT = postgres
 INITIAL_DB_SETUP = true # resync of models in the database, resetting + seeding data
 ```
 
+To authenticate a service account and authorize it to access Firebase services, you must generate a private key file in JSON format. Then we use JSON file to extract these elements:
+
+```
+FIREBASE_PROJECT_ID = yt-clone-39ac2 #identification
+FIREBASE_PRIVATE_KEY = -----BEGIN PRIVATE KEY-----\something--random\n-----END PRIVATE KEY-----\n #private key is used to make connection with our service
+FIREBASE_CLIENT_EMAIL = firebase-adminsdk-ik56i@yt-clone-39ac2.iam.gserviceaccount.com
+```
+
 ### Powered by ministryofprogramming.com
