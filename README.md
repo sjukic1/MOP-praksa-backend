@@ -37,11 +37,7 @@ In order to start the service the following `.env` variable should be present in
 ```
 JWT_SECRET = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 JWT_EXPIRE_TIME_TOKEN = 86400000
-DB_NAME = postgres # if other name and postgres, db should be created before
-DB_USERNAME = postgres
-DB_PASSWORD = somePassword
-DB_HOST = 192.168.43.119 #The IP address of your machine
-DB_PORT = 5432
+DATABASE_URL = postgresql://postgres:test1234@192.168.225.86:5432/postgres #setup for database example
 DB_DIALECT = postgres
 INITIAL_DB_SETUP = true # resync of models in the database, resetting + seeding data
 ```
