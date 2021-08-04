@@ -17,6 +17,10 @@ export default (sequelize, DataTypes) =>
       type: Sequelize.INTEGER,
       required: true,
     },
+    videoDuration: {
+      type: Sequelize.REAL,
+      required: true,
+    },
     description: Sequelize.STRING,
     uploadDate: {
       type: Sequelize.DATE,

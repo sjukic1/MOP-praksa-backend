@@ -11,3 +11,9 @@ export const DATABASE_URL = process.env.DATABASE_URL;
 export const DB_DIALECT = process.env.DB_DIALECT;
 
 export const INITIAL_DB_SETUP = process.env.INITIAL_DB_SETUP;
+
+export const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
+export const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
+export const FIREBASE_CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
+export const BUCKET_NAME = process.env.BUCKET_NAME;
+export const CACHE_CONTROL = process.env.CACHE_CONTROL;

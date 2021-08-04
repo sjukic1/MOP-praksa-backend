@@ -109,7 +109,226 @@
 							"variable": [
 								{
 									"key": "title",
-									"value": "Autos & Vehicles"
+									"value": "Gaming"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Videos",
+			"item": [
+				{
+					"name": "get all videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos?page=0&size=2",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"videos"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "13",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new video",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/home/best/Desktop/testVideo.mp4"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/best/Desktop/tree.jpg"
+								},
+								{
+									"key": "title",
+									"value": "new video",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Do your best",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"videos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update video",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/home/best/Desktop/tree.jpg"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/best/Desktop/test.jpg"
+								},
+								{
+									"key": "title",
+									"value": "neeew",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "yeeeey",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "1200",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos/:id",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"videos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete videos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos/:id",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"videos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get video by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos/:id",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"videos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
 								}
 							]
 						}
