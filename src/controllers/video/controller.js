@@ -4,6 +4,7 @@ import db from '../../lib/db/';
 import { getPagedData, getPagedMetaData } from '../../lib/helpers/pagination';
 import { uploadFile } from '../../lib/helpers/firebaseUploadHelper';
 import { getOrderQuery, getDurationQuery } from '../../lib/helpers/queryVideo';
+import { getUserIdFromToken } from '../../lib/helpers/jwt';
 
 export const getPagedVideos = async (req, res) => {
   try {
@@ -38,6 +39,12 @@ export const getPagedVideos = async (req, res) => {
           limit,
           offset,
         });
+      } else {
+        videos = await db.Video.findAndCountAll({
+          where: { categoryVideoId: category },
+          limit,
+          offset,
+        });
       }
     } else {
       if (orderValue && durationBegin) {
@@ -56,6 +63,11 @@ export const getPagedVideos = async (req, res) => {
       } else if (durationBegin) {
         videos = await db.Video.findAndCountAll({
           where: { videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          limit,
+          offset,
+        });
+      } else {
+        videos = await db.Video.findAndCountAll({
           limit,
           offset,
         });
@@ -107,6 +119,8 @@ export const insertVideo = async (req, res) => {
     } else {
       const videoUrl = await uploadFile(files.video[0]);
 
+      const userId = getUserIdFromToken(req.headers['authorization']);
+
       const video = await db.Video.create({
         title: title,
         url: videoUrl,
@@ -115,6 +129,7 @@ export const insertVideo = async (req, res) => {
         videoDuration: duration,
         description: description,
         uploadDate: Date.now(),
+        UserId: userId,
         categoryVideoId: category,
       });
 

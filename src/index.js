@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth';
 import categoriesRouter from './routes/categories';
 import videosRouter from './routes/videos';
+import userRouter from './routes/user';
 
 import db from './lib/db/';
 import generateDatabaseData from './lib/helpers/databaseData';
@@ -37,6 +38,7 @@ app.use(function (req, res, next) {
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/categories', categoriesRouter);
 app.use('/api/v1/videos', videosRouter);
+app.use('/api/v1/users', userRouter);
 
 (async () => {
   try {

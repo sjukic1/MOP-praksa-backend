@@ -8,21 +8,40 @@ const createTokens = (user) => {
 };
 
 const validateToken = (req, res, next) => {
-  const accessToken = req.cookies['access-token'];
+  const authHeader = req.headers['authorization'];
 
-  if (!accessToken) {
-    return res.status(400).josn({ error: 'User not authenticated!' });
+  if (!authHeader) {
+    return res.status(400).json({ error: 'User not authenticated!' });
   }
 
   try {
-    const validToken = verify(accessToken, JWT_SECRET);
-    if (validToken) {
-      req.authenticated = true;
-      return next();
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+      return res.status(400).json({ message: 'Authorization header is missing!' });
+    } else {
+      const verifyToken = verify(token, JWT_SECRET);
+
+      if (!verifyToken) {
+        return res.status(400).json({ message: 'User token is corrupted' });
+      } else {
+        req.authenticated = true;
+        return next();
+      }
     }
   } catch (err) {
     return res.status(500).json({ error: err });
   }
 };
 
-export { createTokens, validateToken };
+const getUserIdFromToken = (authHeader) => {
+  try {
+    const token = authHeader && authHeader.split(' ')[1];
+    const verifyToken = verify(token, JWT_SECRET);
+    return verifyToken.id;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export { createTokens, validateToken, getUserIdFromToken };

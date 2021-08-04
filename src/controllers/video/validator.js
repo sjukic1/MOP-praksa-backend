@@ -4,6 +4,8 @@ export const getPagedVideos = [
   query('page', 'Page value is not correct').isNumeric(),
   query('size', 'Size value is not correct').isNumeric(),
   query('category', 'Category value is not correct').optional().isString(),
+  query('order', 'Order value is not correct').optional().isString(),
+  query('duration', 'Duration value is not correct').optional().isString(),
 ];
 
 export const getVideoById = [param('id', 'Id not defined').exists().isNumeric()];
