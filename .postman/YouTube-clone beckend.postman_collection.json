@@ -149,7 +149,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MTY1OTQyfQ.pDOPQ8WLFVVSt--pz6KBeqmHJLj0FFK1zEBRnkY43mc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4NTkwNzE4fQ.bPjxSaozsgcuz3uo3W3Lk2tO2ScHi_3osI-ymIvsogI",
 									"type": "string"
 								}
 							]
@@ -157,7 +157,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos?category=13&size=3&page=0&order=createdDate&duration=more20",
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos?category=13&size=3&page=0&order=createdDate&duration=more20&q=old",
 							"host": [
 								"{{YOUTUBE_CLONE_BACKEND_API}}"
 							],
@@ -186,6 +186,10 @@
 								{
 									"key": "duration",
 									"value": "more20"
+								},
+								{
+									"key": "q",
+									"value": "old"
 								}
 							]
 						}
@@ -200,7 +204,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEyIiwiaWQiOjEsImlhdCI6MTYyODIzODI4MX0.jpKVKZyhSJ5PMbqrLqB9p15gafA35U9zbAgfe6HUKUQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4NjEyNDkwfQ.CgX6g1bAzPwVchSbpMaUZ05c0gZgpQjevCiVnI89Ygg",
 									"type": "string"
 								}
 							]
@@ -229,7 +233,7 @@
 								},
 								{
 									"key": "title",
-									"value": "new video",
+									"value": "old video",
 									"type": "text"
 								},
 								{
@@ -248,8 +252,8 @@
 									"type": "text"
 								},
 								{
-									"key": "",
-									"value": "",
+									"key": "q",
+									"value": "new",
 									"type": "text",
 									"disabled": true
 								}
@@ -475,7 +479,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEyIiwiaWQiOjEsImlhdCI6MTYyODIzODI4MX0.jpKVKZyhSJ5PMbqrLqB9p15gafA35U9zbAgfe6HUKUQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4NjExODE5fQ.4_F6MFm5F2EkUSept_YuVXHARU3jxi0a27wzDqkN1h8",
 									"type": "string"
 								}
 							]
@@ -483,7 +487,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/users/me/uploaded-videos?category=13&size=3&page=0&order=createdDate&duration=more20",
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/users/me/uploaded-videos?category=13&size=3&page=0&order=createdDate&duration=more20&q=BEST",
 							"host": [
 								"{{YOUTUBE_CLONE_BACKEND_API}}"
 							],
@@ -514,6 +518,10 @@
 								{
 									"key": "duration",
 									"value": "more20"
+								},
+								{
+									"key": "q",
+									"value": "BEST"
 								}
 							]
 						}

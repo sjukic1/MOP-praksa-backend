@@ -47,7 +47,8 @@ export const signUp = async (req, res) => {
     });
 
     if (newUser) {
-      res.status(200).json({ message: 'User registered!' });
+      const accessToken = createTokens(newUser);
+      res.status(200).json({ message: 'User registered!', token: accessToken });
     }
   } catch (err) {
     if (err) {
