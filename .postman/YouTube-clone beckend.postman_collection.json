@@ -11,6 +11,16 @@
 				{
 					"name": "login",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MDg2NTY0fQ.YPvusLRnAg57ZbcS77DoQjL4hVSaByreY5bB_d8AiWM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -74,6 +84,16 @@
 				{
 					"name": "all categories",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": ".eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MTUyMDUxfQ.iZ1K3rMMfGHsPm7EGvv-PAT6tEji6XhDwSMxR0LkRQM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -124,10 +144,20 @@
 				{
 					"name": "get all videos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MTY1OTQyfQ.pDOPQ8WLFVVSt--pz6KBeqmHJLj0FFK1zEBRnkY43mc",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos?page=0&size=2",
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/videos?category=13&size=3&page=0&order=createdDate&duration=more20",
 							"host": [
 								"{{YOUTUBE_CLONE_BACKEND_API}}"
 							],
@@ -139,16 +169,23 @@
 							"query": [
 								{
 									"key": "category",
-									"value": "13",
-									"disabled": true
+									"value": "13"
+								},
+								{
+									"key": "size",
+									"value": "3"
 								},
 								{
 									"key": "page",
 									"value": "0"
 								},
 								{
-									"key": "size",
-									"value": "2"
+									"key": "order",
+									"value": "createdDate"
+								},
+								{
+									"key": "duration",
+									"value": "more20"
 								}
 							]
 						}
@@ -158,6 +195,16 @@
 				{
 					"name": "create new video",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEyIiwiaWQiOjEsImlhdCI6MTYyODIzODI4MX0.jpKVKZyhSJ5PMbqrLqB9p15gafA35U9zbAgfe6HUKUQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -197,11 +244,11 @@
 								},
 								{
 									"key": "duration",
-									"value": "1000",
+									"value": "30",
 									"type": "text"
 								},
 								{
-									"key": "duration",
+									"key": "",
 									"value": "",
 									"type": "text",
 									"disabled": true
@@ -233,7 +280,7 @@
 								{
 									"key": "video",
 									"type": "file",
-									"src": "/home/best/Desktop/tree.jpg"
+									"src": "/home/best/Desktop/testVideo.mp4"
 								},
 								{
 									"key": "thumbnail",
@@ -258,7 +305,8 @@
 								{
 									"key": "duration",
 									"value": "1200",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -312,6 +360,16 @@
 				{
 					"name": "get video by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MTcwMTU5fQ.kA4-zO5lrykRT05ulTpcDRNl58jkuytEVYDJDIYVtgE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -329,6 +387,133 @@
 								{
 									"key": "id",
 									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MjM4OTkyfQ.G26RCWgV0g27j5r0R7CwyjzHfUeBuhF_28QgAoC8-6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/users/me",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEiLCJpZCI6MSwiaWF0IjoxNjI4MjQwMzgwfQ.pou-cl4BUe9b8PIG_xlLFVB44eZr7Gy8vU8PWd1q6d8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"sjukic12\",\n    \"name\" : \"Sadikk\",\n    \"password\" : \"noviPassword\",\n    \"description\" : \"Please input some description...\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/users/update",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user videos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqdWtpYzEyIiwiaWQiOjEsImlhdCI6MTYyODIzODI4MX0.jpKVKZyhSJ5PMbqrLqB9p15gafA35U9zbAgfe6HUKUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{YOUTUBE_CLONE_BACKEND_API}}/api/v1/users/me/uploaded-videos?category=13&size=3&page=0&order=createdDate&duration=more20",
+							"host": [
+								"{{YOUTUBE_CLONE_BACKEND_API}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me",
+								"uploaded-videos"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "13"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "order",
+									"value": "createdDate"
+								},
+								{
+									"key": "duration",
+									"value": "more20"
 								}
 							]
 						}

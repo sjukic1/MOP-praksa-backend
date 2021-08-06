@@ -30,6 +30,7 @@ db.User.hasMany(db.UserVideo, { as: 'userVideo' });
 db.User.hasMany(db.Subscription, { as: 'userSubscription' });
 db.User.hasMany(db.UserReply, { as: 'userReply' });
 db.User.hasMany(db.UserComment, { as: 'userComment' });
+db.User.hasMany(db.Video, { as: 'userId' });
 db.Video.hasMany(db.UserVideo, { as: 'videoUser' });
 db.Video.hasMany(db.Comment, { as: 'videoComment' });
 db.Categoty.hasOne(db.Video, { as: 'categoryVideo' });

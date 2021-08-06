@@ -3,8 +3,6 @@ import bcrypt from 'bcrypt';
 import db from '../../lib/db/';
 import { createTokens, validateToken } from '../../lib/helpers/jwt';
 
-import { JWT_EXPIRE_TIME_TOKEN } from '../../config/constants';
-
 export const login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -23,12 +21,7 @@ export const login = async (req, res) => {
       } else {
         const accessToken = createTokens(userFound);
 
-        res.cookie('access-token', accessToken, {
-          maxAge: JWT_EXPIRE_TIME_TOKEN,
-          httpOnly: true,
-        });
-
-        res.status(200).json({ message: 'Success login!' });
+        res.status(200).json({ message: 'Success login!', token: accessToken });
       }
     }
   } catch (err) {
