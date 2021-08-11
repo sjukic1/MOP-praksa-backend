@@ -7,6 +7,8 @@ import { createTokens, validateToken } from '../../lib/helpers/jwt';
 import { getOrderQuery, getDurationQuery } from '../../lib/helpers/queryVideo';
 import { getPagedData, getPagedMetaData } from '../../lib/helpers/pagination';
 
+import { REGEX_MATCHING_ALL_CHARACTERS } from '../../config/constants';
+
 export const getUser = async (req, res) => {
   try {
     const userId = getUserIdFromToken(req.headers['authorization']);
@@ -54,13 +56,14 @@ export const updateUser = async (req, res) => {
 
 export const getUserVideos = async (req, res) => {
   try {
-    const { page, size, category, order, duration } = req.query;
+    const { page, size, category, order, duration, q } = req.query;
 
     const { limit, offset } = getPagedMetaData(page, size);
 
     const durationBegin = duration ? +getDurationQuery(duration).first[0] : null;
     const durationEnd = duration ? +getDurationQuery(duration).last[0] : null;
     const orderValue = order ? getOrderQuery(order) : null;
+    const query = q ? q : REGEX_MATCHING_ALL_CHARACTERS;
 
     const userId = getUserIdFromToken(req.headers['authorization']);
 
@@ -69,27 +72,37 @@ export const getUserVideos = async (req, res) => {
     if (category) {
       if (orderValue && durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: {
+            UserId: userId,
+            categoryVideoId: category,
+            videoDuration: { [Op.between]: [durationBegin, durationEnd] },
+            [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } },
+          },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (orderValue) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, categoryVideoId: category },
+          where: { UserId: userId, categoryVideoId: category, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: {
+            UserId: userId,
+            categoryVideoId: category,
+            videoDuration: { [Op.between]: [durationBegin, durationEnd] },
+            [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } },
+          },
           limit,
           offset,
         });
       } else {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, categoryVideoId: category },
+          where: { UserId: userId, categoryVideoId: category, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });
@@ -97,27 +110,27 @@ export const getUserVideos = async (req, res) => {
     } else {
       if (orderValue && durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { UserId: userId, videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (orderValue) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId },
+          where: { UserId: userId, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { UserId: userId, videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });
       } else {
         videos = await db.Video.findAndCountAll({
-          where: { UserId: userId },
+          where: { UserId: userId, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });

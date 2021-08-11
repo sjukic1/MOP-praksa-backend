@@ -6,42 +6,45 @@ import { uploadFile } from '../../lib/helpers/firebaseUploadHelper';
 import { getOrderQuery, getDurationQuery } from '../../lib/helpers/queryVideo';
 import { getUserIdFromToken } from '../../lib/helpers/jwt';
 
+import { REGEX_MATCHING_ALL_CHARACTERS } from '../../config/constants';
+
 export const getPagedVideos = async (req, res) => {
   try {
-    const { page, size, category, order, duration } = req.query;
+    const { page, size, category, order, duration, q } = req.query;
 
     const { limit, offset } = getPagedMetaData(page, size);
 
     const durationBegin = duration ? +getDurationQuery(duration).first[0] : null;
     const durationEnd = duration ? +getDurationQuery(duration).last[0] : null;
     const orderValue = order ? getOrderQuery(order) : null;
+    const query = q ? q : REGEX_MATCHING_ALL_CHARACTERS;
 
     let videos = null;
 
     if (category) {
       if (orderValue && durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (orderValue) {
         videos = await db.Video.findAndCountAll({
-          where: { categoryVideoId: category },
+          where: { categoryVideoId: category, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { categoryVideoId: category, videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });
       } else {
         videos = await db.Video.findAndCountAll({
-          where: { categoryVideoId: category },
+          where: { categoryVideoId: category, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });
@@ -49,25 +52,27 @@ export const getPagedVideos = async (req, res) => {
     } else {
       if (orderValue && durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (orderValue) {
         videos = await db.Video.findAndCountAll({
+          where: { [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           order: [[orderValue, 'DESC']],
           limit,
           offset,
         });
       } else if (durationBegin) {
         videos = await db.Video.findAndCountAll({
-          where: { videoDuration: { [Op.between]: [durationBegin, durationEnd] } },
+          where: { videoDuration: { [Op.between]: [durationBegin, durationEnd] }, [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });
       } else {
         videos = await db.Video.findAndCountAll({
+          where: { [Op.or]: { title: { [Op.iRegexp]: query }, description: { [Op.iRegexp]: query } } },
           limit,
           offset,
         });

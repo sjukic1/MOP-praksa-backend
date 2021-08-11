@@ -17,3 +17,7 @@ export const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
 export const FIREBASE_CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
 export const BUCKET_NAME = process.env.BUCKET_NAME;
 export const CACHE_CONTROL = process.env.CACHE_CONTROL;
+
+export const SWAGGER_URL = process.env.SWAGGER_URL;
+
+export const REGEX_MATCHING_ALL_CHARACTERS = '(.*?)';
