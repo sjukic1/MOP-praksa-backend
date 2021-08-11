@@ -17,15 +17,13 @@ const categoriesRouter = express.Router();
  *      tags:
  *        - "Categories"
  *      description: Get all categories
- *      security:
- *        - Bearer: []
  *      responses:
  *        200:
  *          description: All categories!
  *        500:
  *          description: Server error!
  */
-categoriesRouter.get('/', validateToken, CategoriesValidationProps.getAllCategories, Helper.validateErrors, CategoriesController.getAllCategories);
+categoriesRouter.get('/', CategoriesValidationProps.getAllCategories, Helper.validateErrors, CategoriesController.getAllCategories);
 /**
  * @swagger
  *
@@ -40,8 +38,6 @@ categoriesRouter.get('/', validateToken, CategoriesValidationProps.getAllCategor
  *      tags:
  *        - "Categories"
  *      description: Get all categories
- *      security:
- *        - Bearer: []
  *      parameters:
  *        - in: path
  *          name: title
@@ -53,6 +49,6 @@ categoriesRouter.get('/', validateToken, CategoriesValidationProps.getAllCategor
  *        500:
  *          description: Server error!
  */
-categoriesRouter.get('/:title', validateToken, CategoriesValidationProps.getCategoryByName, Helper.validateErrors, CategoriesController.getCategoryByName);
+categoriesRouter.get('/:title', CategoriesValidationProps.getCategoryByName, Helper.validateErrors, CategoriesController.getCategoryByName);
 
 export default categoriesRouter;
