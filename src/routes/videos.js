@@ -23,8 +23,6 @@ const multerVideoFields = multer.fields([
  *      tags:
  *        - "Videos"
  *      description: Get all videos
- *      security:
- *        - Bearer: []
  *      parameters:
  *        - in: query
  *          name: category
@@ -46,7 +44,7 @@ const multerVideoFields = multer.fields([
  *        500:
  *          description: Server error!
  */
-videosRouter.get('/', validateToken, VideosValidationProps.getPagedVideos, Helper.validateErrors, VideosController.getPagedVideos);
+videosRouter.get('/', VideosValidationProps.getPagedVideos, Helper.validateErrors, VideosController.getPagedVideos);
 /**
  * @swagger
  * paths:
@@ -59,8 +57,6 @@ videosRouter.get('/', validateToken, VideosValidationProps.getPagedVideos, Helpe
  *        - in: path
  *          name: id
  *          type: integer
- *      security:
- *        - Bearer: []
  *      responses:
  *        200:
  *          description: Successfully returned video!
@@ -69,7 +65,7 @@ videosRouter.get('/', validateToken, VideosValidationProps.getPagedVideos, Helpe
  *        500:
  *          description: Server error!
  */
-videosRouter.get('/:id', validateToken, VideosValidationProps.getVideoById, Helper.validateErrors, VideosController.getVideoById);
+videosRouter.get('/:id', VideosValidationProps.getVideoById, Helper.validateErrors, VideosController.getVideoById);
 /**
  * @swagger
  * paths:
